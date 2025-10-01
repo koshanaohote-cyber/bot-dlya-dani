@@ -1,3 +1,12 @@
+import sys
+try:
+    import imghdr
+except ImportError:
+    from types import ModuleType
+    imghdr = ModuleType('imghdr')
+    imghdr.what = lambda x: None
+    sys.modules['imghdr'] = imghdr
+
 import logging
 import json
 import os
@@ -373,6 +382,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
