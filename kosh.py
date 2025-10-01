@@ -14,7 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Токен вашего бота от @BotFather
-BOT_TOKEN = "8490453010:AAHfcs5JafNjXu5HfrIExQKIGc0OSpWiTTg"
+BOT_TOKEN = os.environ.get("8490453010:AAHfcs5JafNjXu5HfrIExQKIGc0OSpWiTTg")
 
 # Файл для хранения данных
 DATA_FILE = "user_data.json"
@@ -373,7 +373,8 @@ async def show_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
 def main() -> None:
     """Запуск бота"""
     # Создаем приложение
-    application = Application.builder().token(BOT_TOKEN).build()
+    updater = Updater(BOT_TOKEN)
+    dispatcher = updater.dispatcher
 
     # Добавляем обработчики
     application.add_handler(CommandHandler("start", start))
@@ -383,8 +384,10 @@ def main() -> None:
 
     # Запускаем бота
     print("Бот запущен! Нажмите Ctrl+C для остановки")
-    application.run_polling()
+    updater.start_polling()
+    updater.idle()
 
 
 if __name__ == "__main__":
     main()
+
