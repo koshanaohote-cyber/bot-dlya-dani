@@ -367,23 +367,24 @@ def show_today(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     """Запуск бота"""
     import time
-    time.sleep(2)
+    time.sleep(3)
     print("🚀 Запускаю бота...")
-    updater = Updater(BOT_TOKEN)
-    dispatcher = updater.dispatcher
     
-    # Добавляем обработчики
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("help", help_command))
-    dispatcher.add_handler(CommandHandler("today", show_today))
-    dispatcher.add_handler(CallbackQueryHandler(handle_button_click))
-    
-    print("✅ Бот запущен! Нажмите Ctrl+C для остановки")
-    updater.start_polling()
-    updater.idle()
+    try:
+        updater = Updater(BOT_TOKEN)
+        dp = updater.dispatcher
+        
+        dp.add_handler(CommandHandler("start", start))
+        dp.add_handler(CallbackQueryHandler(handle_button_click))
+        
+        print("✅ Бот запущен!")
+        updater.start_polling()
+        updater.idle()
+    except Exception as e:
+        print(f"❌ Ошибка: {e}")
+        time.sleep(10)
 
-if __name__ == "__main__":
-    main()
+
 
 
 
