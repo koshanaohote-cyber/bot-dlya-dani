@@ -5,6 +5,14 @@ import random
 from datetime import datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+try:
+    import imghdr
+except ImportError:
+    import sys
+    from types import ModuleType
+    imghdr = ModuleType("imghdr")
+    imghdr.what = lambda x: None
+    sys.modules["imghdr"] = imghdr
 
 # Настройка логирования
 logging.basicConfig(
@@ -390,5 +398,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
