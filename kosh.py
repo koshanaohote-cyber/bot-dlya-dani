@@ -14,7 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Токен вашего бота от @BotFather
-BOT_TOKEN = os.environ.get("8490453010:AAHfcs5JafNjXu5HfrIExQKIGc0OSpWiTTg")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 # Файл для хранения данных
 DATA_FILE = "user_data.json"
@@ -390,4 +390,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
