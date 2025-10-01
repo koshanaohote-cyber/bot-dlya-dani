@@ -366,6 +366,8 @@ def show_today(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Запуск бота"""
+    import time
+    time.sleep(2)
     print("🚀 Запускаю бота...")
     updater = Updater(BOT_TOKEN)
     dispatcher = updater.dispatcher
@@ -382,6 +384,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
